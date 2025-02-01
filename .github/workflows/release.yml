@@ -60,7 +60,7 @@ jobs:
           skip-on-empty: "false"
 
       - name: Create Release
-        uses: emmanuel-oliveira/github-releases-action@v1
+        uses: emmanuel-oliveira/github-releases@v1
         with:
           mode: "create"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
