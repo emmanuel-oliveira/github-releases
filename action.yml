@@ -1,0 +1,45 @@
+name: 'github-releases'
+description: 'A GitHub Action to greet someone and log the execution time based on the specified mode (create or delete).'
+
+inputs:
+  mode:
+    description: 'The action to execute: "create" to add a greeting or "delete" to remove a greeting.'
+    required: true
+    type: string
+    enum: ['create', 'delete']
+
+  githubToken:
+    description: 'Personal GitHub token used for authentication and API requests.'
+    required: true
+    type: string
+
+  itemsToKeep:
+    description: 'Number of releases to retain when deleting (only applicable in delete mode).'
+    required: false
+    type: integer
+    default: 5 
+
+  name:
+    description: 'Name of the release (only applicable in create mode).'
+    required: false
+    type: string
+
+  tagName:
+    description: 'The tag name for the release (optional for create mode).'
+    required: false
+    type: string
+
+  body:
+    description: 'Body content for the release (only applicable in create mode).'
+    required: false
+    type: string
+
+runs:
+  using: 'node20'
+  main: 'build/index.js'
+
+outputs:
+  executionTime:
+    description: 'The timestamp when the action was executed.'
+    value: '${{ steps.action.outputs.timestamp }}'
+

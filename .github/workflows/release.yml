@@ -1,0 +1,84 @@
+name: Create Release
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    name: Build TypeScript
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Build TypeScript
+        run: |
+          npm run build
+
+      - name: Commit and push build output
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git config --global advice.addIgnoredFile false
+
+          git add -f build/
+
+          if ! git diff --cached --exit-code; then
+            git commit -m "Add build output"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
+
+  create_release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Conventional Changelog Action
+        id: changelog 
+        uses: TriPSs/conventional-changelog-action@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          tag-prefix: 'v'
+          skip-commit: "true"
+          skip-on-empty: "false"
+
+      - name: Create Release
+        uses: emmanuel-oliveira/github-releases@v0
+        with:
+          mode: "create"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          body: ${{ steps.changelog.outputs.tag }}
+          tagName: ${{ steps.changelog.outputs.tag }}
+          name: ${{ steps.changelog.outputs.tag }}
+
+  delete_release:
+    name: Delete Old Releases
+    runs-on: ubuntu-latest
+    needs: create_release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Delete Release
+        uses: emmanuel-oliveira/github-releases@v0
+        with:
+          mode: "delete"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          itemsToKeep: 3
