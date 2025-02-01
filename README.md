@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete Release
-        uses: emmanuel-oliveira/github-releases@v0
+        uses: emmanuel-oliveira/github-releases-action@v1
         with:
           mode: "delete"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create Release
-        uses: emmanuel-oliveira/github-releases@v0
+        uses: emmanuel-oliveira/github-releases-action@v1
         with:
           mode: "create"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
