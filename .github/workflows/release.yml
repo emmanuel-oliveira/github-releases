@@ -36,7 +36,7 @@ jobs:
 
           if ! git diff --cached --exit-code; then
             git commit -m "Add build output"
-            git push origin main
+            git push origin master
           else
             echo "No changes to commit"
           fi
