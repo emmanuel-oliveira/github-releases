@@ -1,6 +1,6 @@
 # GitHub Release Action
 
-![GitHub Release Action](https://img.shields.io/github/v/release/emmanuel-oliveira/actions)
+![GitHub Release Action](https://img.shields.io/github/v/release/emmanuel-oliveira/github-releases)
 
 A GitHub Action to automatically create or delete releases. Inspired by [dev-drprasad/delete-older-releases](https://github.com/dev-drprasad/delete-older-releases), this action helps automate GitHub release management.
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete Release
-        uses: emmanuel-oliveira/actions@v0.6.0
+        uses: emmanuel-oliveira/github-releases@v0
         with:
           mode: "delete"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create Release
-        uses: emmanuel-oliveira/actions@v0.6.0
+        uses: emmanuel-oliveira/github-releases@v0
         with:
           mode: "create"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
 ```
 
 
-![Input schema on create mode](https://github.com/emmanuel-oliveira/actions/blob/main/docs/ACTIONS.png)
+![Input schema on create mode](https://github.com/emmanuel-oliveira/github-releases/blob/main/docs/ACTIONS.png)
 
 
 
