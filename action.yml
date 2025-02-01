@@ -1,6 +1,8 @@
-name: 'github-releases'
+name: 'github-releases-action'
 description: 'A GitHub Action to greet someone and log the execution time based on the specified mode (create or delete).'
-
+branding:
+  icon: 'box'
+  color: 'blue'
 inputs:
   mode:
     description: 'The action to execute: "create" to add a greeting or "delete" to remove a greeting.'
