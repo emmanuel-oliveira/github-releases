@@ -34,7 +34,7 @@ jobs:
 
           git add -f build/
 
-          if ! git diff --cached --exit-code; then
+          if ! git diff --cached --exit-code >/dev/null 2>&1; then
             git commit -m "Add build output"
             git push origin master
           else

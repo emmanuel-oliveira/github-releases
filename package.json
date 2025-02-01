@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/index.ts",
     "start": "node build/index.js",
-    "postbuild": "cp package.json build/ && npm install --omit=dev  --prefix build",
+    "postbuild": "cp package.json build/ && npm install --omit=dev --prefix build",
     "build": "tsup src --out-dir build"
   },
   "keywords": [],
