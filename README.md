@@ -46,7 +46,7 @@ jobs:
 ```
 
 
-![Input schema on create mode](https://github.com/emmanuel-oliveira/github-releases/blob/main/docs/ACTIONS.png)
+![Input schema on create mode](https://github.com/emmanuel-oliveira/github-releases/blob/master/docs/ACTIONS.png)
 
 
 
